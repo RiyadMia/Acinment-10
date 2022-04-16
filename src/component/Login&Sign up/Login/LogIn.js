@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import SocailLogin from "../../../Home/SocailLogin/SocilLogin";
 const Login = () => {
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -49,7 +50,6 @@ const Login = () => {
   const handleFromSubmit = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(userInfo.email, userInfo.password);
-    console.log(userInfo);
   };
 
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   useEffect(() => {
     if (user) {
-      navigate(from);
+      navigate(from, { replace: true });
     }
   }, [user]);
 
@@ -98,6 +98,7 @@ const Login = () => {
           Do not have an account?<Link to="/signup">Signup to Fast</Link>
         </p>
       </form>
+      <SocailLogin></SocailLogin>
       <ToastContainer />
     </div>
   );
