@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithEmailAndPassword,
-} from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../../firebace.init";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -53,6 +51,15 @@ const Login = () => {
     signInWithEmailAndPassword(userInfo.email, userInfo.password);
     console.log(userInfo);
   };
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (user) {
+      navigate(from);
+    }
+  }, [user]);
 
   return (
     <div className="container   mt-3  style">
