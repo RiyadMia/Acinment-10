@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocailLogin from "../../../Home/SocailLogin/SocilLogin";
 const Signup = () => {
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -121,6 +122,7 @@ const Signup = () => {
           Signup
         </button>
       </form>
+      <SocailLogin></SocailLogin>
       <ToastContainer />
     </div>
   );
