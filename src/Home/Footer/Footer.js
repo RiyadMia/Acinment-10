@@ -6,7 +6,15 @@ const Footer = () => {
   return (
     <footer className="text-center   footer">
       <div className="grid text-white">
-        <h4 className="mt-4">Doctors Name : M.B.S Abdul </h4>
+        <div>
+          <h5 className="mt-4">Doctors Service</h5>
+          <h5>Dhaka,Mymenshing</h5>
+          <h5>Purbadhala,Netrakona</h5>
+        </div>
+        <div className="">
+          <h5 className="mt-4">Dhaka Medical Collage</h5>
+          <h5>Doctors Name : M.B.S Abdul </h5>
+        </div>
         <div>
           <h5 className="mt-4"> Mobile : 01717000000,0191200000 </h5>
           <h6>Gmail : abdul@gmail.com</h6>
