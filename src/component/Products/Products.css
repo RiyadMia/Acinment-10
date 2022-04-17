@@ -1,7 +1,7 @@
 img{
     width: 300px;
     height: 300px;
-    border: 1px solid lavender;
+    
     border-radius: 10px;
     
 }
@@ -9,5 +9,5 @@ img{
     width: 350px;
 }
 .center{
-     margin-left: 110px;
+     margin-left: 50px;
 }

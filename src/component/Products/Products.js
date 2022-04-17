@@ -5,16 +5,21 @@ const Products = ({ service }) => {
   const { name, img, price, id } = service;
   const navigate = useNavigate();
   const navigateToServiceDetail = (id) => {
-    navigate(`/service/${id}`);
+    navigate(`/checkoutdatail/${id}`);
   };
   return (
     <div>
-      <img className="img-d" src={img} alt="" />
+      <img
+        className="img-d  shadow p-3 mb-2 bg-body rounded"
+        src={img}
+        alt=""
+      />
+      <h3 className="text-center">{name}</h3>
       <button
         onClick={() => navigateToServiceDetail(id)}
         className=" mt-3  btn btn-primary  center"
       >
-        Chackout
+        Chackout: {name}
       </button>
     </div>
   );
