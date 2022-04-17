@@ -1,129 +1,97 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css";
 import {
   useCreateUserWithEmailAndPassword,
-  useSignInWithEmailAndPassword,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebace.init";
-import { ToastContainer, toast } from "react-toastify";
 
-import "react-toastify/dist/ReactToastify.css";
-
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { async } from "@firebase/util";
 import SocailLogin from "../../../Home/SocailLogin/SocilLogin";
+
 const Signup = () => {
-  const [userInfo, setUserInfo] = useState({
-    email: "",
-    password: "",
-  });
+  /* chacked box*/
 
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-    confromPassword: "",
-    ganaral: "",
-  });
-
-  const [createUserWithEmailAndPassword, user, loading, hookerror] =
+  const [agree, setEgree] = useState(false);
+  /*Firebace hools install */
+  const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-
-  const handlemailSubmit = (e) => {
-    // setEmail(e.target.value);
-    const emailRegex = /\S+@\S+\.\S+/;
-    const vailedEmail = emailRegex.test(e.target.value);
-    if (vailedEmail) {
-      setUserInfo({ ...userInfo, email: e.target.value });
-      setErrors({ ...errors, email: "" });
-    } else {
-      setErrors({ ...errors, email: "Invalid email" });
-      setUserInfo({ ...userInfo, email: "" });
-    }
-  };
-
-  const handlpasswordSubmit = (e) => {
-    const passwordRegex = /.{6,}/;
-    const vailedPassword = passwordRegex.test(e.target.value);
-    if (vailedPassword) {
-      setUserInfo({ ...userInfo, password: e.target.value });
-      setErrors({ ...errors, password: "" });
-    } else {
-      setErrors({ ...errors, password: " Minimum 6 characters !!!" });
-      setUserInfo({ ...userInfo, password: "" });
-    }
-  };
-  /*confrom password */
-  const handconformlpassword = (e) => {
-    if (e.target.value === userInfo.password) {
-      setUserInfo({ ...userInfo, confromPassword: e.target.value });
-      setErrors({ ...errors, password: "" });
-    } else {
-      setErrors({ ...errors, password: "  passwors don't meach ?" });
-      setUserInfo({ ...userInfo, confromPassword: "" });
-    }
-  };
-
-  const handleFromSubmit = (e) => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(userInfo.email, userInfo.password);
-    console.log(userInfo);
-  };
-
+  const [updateProfile, updating, error1] = useUpdateProfile(auth);
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-  useEffect(() => {
-    if (user) {
-      navigate(from);
-    }
-  }, [user]);
+  const navigetLogin = () => {
+    navigate("/login");
+  };
+  /* Register Now */
+
+  const handlRegister = async (event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
+    console.log("Updated profile");
+    navigate("/home");
+  };
+
+  if (loading || updating) {
+    return "Lodeing";
+  }
+
+  if (user) {
+    console.log("user", user);
+  }
 
   return (
-    <div className="container   mt-3  style">
-      <h2 className=" text-center">Pleace Signup</h2>
-      <form onSubmit={handleFromSubmit}>
-        <div className="mb-3 mx-auto">
-          <label for="exampleInputEmail1" className="form-label">
-            Email address
-          </label>
-          <input
-            onChange={handlemailSubmit}
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        {errors?.email && <p className="text-danger">{errors.email}</p>}
-        <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
-            Password
-          </label>
-          <input
-            onChange={handlpasswordSubmit}
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-          />
-        </div>
-        <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
-            confrom Password
-          </label>
-
-          <input
-            onChange={handconformlpassword}
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-          />
-        </div>
-        {errors?.password && <p className="text-danger">{errors.password}</p>}
-        {hookerror && <p className="text-danger">{hookerror?.massage}</p>}
-        <button type=" Submit" className="btn btn-primary w-100 btn">
-          Signup
-        </button>
+    <div className="register-form style mt-3">
+      <h2 className="text-center mt-4 mb-4  text-primary">Please Register</h2>
+      <form onSubmit={handlRegister}>
+        <input type="text" name="Name" id="" placeholder="Your Name " />
+        <input
+          type="email"
+          name="email"
+          id=""
+          placeholder="Your email"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          id=""
+          placeholder="Password"
+          required
+        />
+        <input
+          onClick={() => setEgree(!agree)}
+          type="checkbox"
+          name="terms"
+          id="terms"
+        />
+        <label
+          className={`ps-2 ${agree ? " text-primary" : " text-danger"}`}
+          htmlFor="terms"
+        >
+          Accept Genius Doctors Terms and Conditions .
+        </label>
+        <input
+          disabled={!agree}
+          className=" btn btn-primary w-50 d-block mx-auto mt-3"
+          type="submit"
+          value="Register"
+        />
       </form>
-      <SocailLogin></SocailLogin>
-      <ToastContainer />
+      <p>
+        Already have an account?
+        <Link
+          to="/login"
+          className="text-primary pe-auto text-decoration-none"
+          onClick={navigetLogin}
+        >
+          Please Login
+        </Link>
+      </p>
+      {<SocailLogin></SocailLogin>}
     </div>
   );
 };
