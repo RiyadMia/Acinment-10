@@ -1,0 +1,19 @@
+.grid{
+    display: grid;
+    grid-template-columns: 3,1fr;
+}
+
+.center{
+    border: 1px solid lightgray;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+

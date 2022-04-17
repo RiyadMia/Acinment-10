@@ -1,14 +1,15 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-
+import ServiceHooks from "../../component/Services/ServiceHook/ServiceHooks";
+import "./CheckoutDatil.css";
 const CheckoutDetail = () => {
   const { checkoutdatailId } = useParams();
   return (
-    <div>
-      <h1>check out ditals{checkoutdatailId}</h1>
-      <div className="text-center">
+    <div className="mt-5  ">
+      <ServiceHooks></ServiceHooks>
+      <div className="text-center mt-5">
         <Link to="/checkout">
-          <button className="btn btn-primary">Service Detail</button>
+          <button className="btn btn-primary"> All Service Details</button>
         </Link>
       </div>
     </div>

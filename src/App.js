@@ -10,6 +10,7 @@ import Signup from "./component/Login&Sign up/Signup/Signup";
 import Footer from "./Home/Footer/Footer";
 import Service from "./component/Services/Service/Service";
 import Checkout from "./Checkout/Checkout/Checkout";
+
 function App() {
   return (
     <div>
@@ -27,7 +28,6 @@ function App() {
         ></Route>
         <Route path="/servise" element={<Service></Service>}></Route>
         <Route path="/checkout" element={<Checkout></Checkout>}></Route>
-        <Route path="" element></Route>
         <Route path="" element></Route>
       </Routes>
       <Footer></Footer>
