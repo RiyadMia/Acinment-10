@@ -8,7 +8,7 @@ import doctor6 from "../../../images/doctoeService/doctor6.png";
 import "./ServiceHoooks.css";
 const ServiceHooks = () => {
   return (
-    <div className="container grid">
+    <div className="container grids">
       <div className="center">
         <img src={doctor1} alt="" />
         <h4 className="text-center">Price : 50000</h4>

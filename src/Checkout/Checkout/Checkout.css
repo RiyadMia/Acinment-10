@@ -1,0 +1,14 @@
+.margin{
+    margin-left: 100px;
+}
+.collage{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-top: 40px;
+ justify-content: center;
+}
+@media only screen and (max-width:576px) {
+    .collage{
+        grid-template-columns: repeat(1,1fr);
+    }
+}

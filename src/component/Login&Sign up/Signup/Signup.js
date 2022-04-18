@@ -29,7 +29,8 @@ const Signup = () => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    await createUserWithEmailAndPassword(email, password);
+    const confromPassword = event.target.confromPassword.value;
+    await createUserWithEmailAndPassword(email, password, confromPassword);
     await updateProfile({ displayName: name });
     console.log("Updated profile");
     navigate("/home");
@@ -38,16 +39,10 @@ const Signup = () => {
   if (loading || updating) {
     return "Lodeing";
   }
-
-  if (user) {
-    console.log("user", user);
-  }
-
   return (
-    <div className="register-form style mt-3">
-      <h2 className="text-center mt-4 mb-4  text-primary">Please Register</h2>
+    <div className="register-form style mt-5">
+      <h2 className="text-center  mb-2 text-primary">Please Register</h2>
       <form onSubmit={handlRegister}>
-        <input type="text" name="Name" id="" placeholder="Your Name " />
         <input
           type="email"
           name="email"
@@ -60,6 +55,13 @@ const Signup = () => {
           name="password"
           id=""
           placeholder="Password"
+          required
+        />
+        <input
+          type="password"
+          name="confromPassword"
+          id=""
+          placeholder="confrom Password"
           required
         />
         <input

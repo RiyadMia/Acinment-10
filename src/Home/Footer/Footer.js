@@ -4,20 +4,24 @@ const Footer = () => {
   const today = new Date();
   const year = today.getFullYear();
   return (
-    <footer className="text-center   footer">
-      <div className="grid text-white">
-        <div>
-          <h5 className="mt-4">Doctors Service</h5>
-          <h5>Dhaka,Mymenshing</h5>
-          <h5>Purbadhala,Netrakona</h5>
+    <footer className="text-center footer">
+      <div className="gridFooter text-white">
+        <div className="mt-4">
+          <small>Doctors Service</small>
+          <br />
+          <small>Dhaka,Mymenshing</small>
+          <br />
+          <small>Purbadhala,Netrakona</small>
         </div>
-        <div className="">
-          <h5 className="mt-4">Dhaka Medical Collage</h5>
-          <h5>Doctors Name : M.B.S Abdul </h5>
+        <div className="mt-4">
+          <small>Dhaka Medical Collage</small>
+          <br />
+          <small>Doctors Name : M.B.S Abdul </small>
         </div>
-        <div>
-          <h5 className="mt-4"> Mobile : 01717000000,0191200000 </h5>
-          <h6>Gmail : abdul@gmail.com</h6>
+        <div className="mt-4">
+          <small> Mobile : 01717000000,0191200000 </small>
+          <br />
+          <p>Gmail : abdul@gmail.com</p>
         </div>
       </div>
 

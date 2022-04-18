@@ -4,7 +4,9 @@
     background-color: rgb(17, 16, 16);
    margin-top: 80px;
 }
-.grid{
+.gridFooter{
+    
     display: grid;
-    grid-template-columns: 3,1fr;
+    grid-template-columns: repeat(3,1fr)
 }
+

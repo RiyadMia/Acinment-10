@@ -19,7 +19,7 @@ const Products = ({ service }) => {
         onClick={() => navigateToServiceDetail(id)}
         className=" mt-3  btn btn-primary  center"
       >
-        Chackout: {name}
+        Doctor: {name}
       </button>
     </div>
   );
