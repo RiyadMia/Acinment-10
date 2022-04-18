@@ -2,7 +2,13 @@
 
 ### webside link : [https://acinment-1afa0.web.app/](https://acinment-1afa0.web.app/)
 
-# Getting Started with Create React App
+## Getting Started with Create React App
+
+## React Bootstrap [npm install react-bootstrap bootstrap](npm install react-bootstrap bootstrap)
+
+## Rexct Router [ npm install react-router-dom@6]( npm install react-router-dom@6)
+
+## React Torst [npm install --save react-toastify](npm install --save react-toastify)
 
 ## Available Scripts
 
