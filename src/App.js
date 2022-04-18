@@ -32,7 +32,14 @@ function App() {
             </RequireAuth>
           }
         ></Route>
-        <Route path="/servise" element={<Service></Service>}></Route>
+        <Route
+          path="/servise"
+          element={
+            <RequireAuth>
+              <Service></Service>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/checkout" element={<Checkout></Checkout>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>

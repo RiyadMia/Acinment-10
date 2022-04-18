@@ -10,6 +10,7 @@ import auth from "../../../firebace.init";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SocailLogin from "../../../Home/SocailLogin/SocilLogin";
+import Lodeing from "../../../Home/Lodeing/Lodeing";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Login = () => {
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
   if (loading || sending) {
-    return "Lodeing....";
+    return <Lodeing></Lodeing>;
   }
 
   if (user) {

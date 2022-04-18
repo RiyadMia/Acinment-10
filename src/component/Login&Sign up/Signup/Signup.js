@@ -9,6 +9,7 @@ import auth from "../../../firebace.init";
 
 import { async } from "@firebase/util";
 import SocailLogin from "../../../Home/SocailLogin/SocilLogin";
+import Lodeing from "../../../Home/Lodeing/Lodeing";
 
 const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -48,7 +49,7 @@ const Signup = () => {
   };
 
   if (loading || updating) {
-    return "Lodeing";
+    return <Lodeing></Lodeing>;
   }
   return (
     <div className="register-form style mt-5">
