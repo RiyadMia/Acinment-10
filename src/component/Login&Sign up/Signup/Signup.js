@@ -11,16 +11,21 @@ import { async } from "@firebase/util";
 import SocailLogin from "../../../Home/SocailLogin/SocilLogin";
 
 const Signup = () => {
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   /* chacked box*/
 
   const [agree, setEgree] = useState(false);
   /*Firebace hools install */
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, user, loading, error2] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, error1] = useUpdateProfile(auth);
   const navigate = useNavigate();
   const navigetLogin = () => {
     navigate("/login");
+  };
+  const handleComfirmPasswordBlur = (event) => {
+    setConfirmPassword(event.target.value);
   };
   /* Register Now */
 
@@ -29,10 +34,16 @@ const Signup = () => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    const confromPassword = event.target.confromPassword.value;
-    await createUserWithEmailAndPassword(email, password, confromPassword);
+    if (password !== confirmPassword) {
+      setError("You tow password did not match");
+      return;
+    }
+    if (password.length < 6) {
+      setError("password must be 6 characters");
+      return;
+    }
+    await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
-    console.log("Updated profile");
     navigate("/home");
   };
 
@@ -58,12 +69,14 @@ const Signup = () => {
           required
         />
         <input
+          onBlur={handleComfirmPasswordBlur}
           type="password"
           name="confromPassword"
           id=""
           placeholder="confrom Password"
           required
         />
+        <p className="text-danger">{error}</p>
         <input
           onClick={() => setEgree(!agree)}
           type="checkbox"
